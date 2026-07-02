@@ -19,6 +19,11 @@ export default clerkMiddleware(async (auth, req) => {
   const hostname = req.headers.get("host") || "";
   let tenantConfig = "default";
   
+  // Do NOT run next-intl middleware for API routes
+  if (req.nextUrl.pathname.startsWith('/api') || req.nextUrl.pathname.startsWith('/trpc')) {
+    return;
+  }
+  
   // For example: if (hostname.includes("schoolname.bursaryfinder.co.za"))
   // We can attach a custom header to pass the tenant context to the Next.js app
   const response = intlMiddleware(req);
