@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
-import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import { SignInButton, SignUpButton, Show, UserButton } from '@clerk/nextjs';
 
 export default function HomePage() {
   const t = useTranslations('Index');
@@ -11,17 +11,17 @@ export default function HomePage() {
       
       {/* Auth Controls */}
       <div className="absolute top-6 right-6 z-20 flex space-x-4 items-center">
-        <SignedOut>
+        <Show when="signed-out">
           <SignInButton mode="modal">
             <button className="text-sm font-semibold hover:text-gray-300 transition-colors">Log in</button>
           </SignInButton>
           <SignUpButton mode="modal">
             <button className="text-sm font-bold bg-white text-indigo-900 px-4 py-2 rounded-full hover:bg-gray-100 transition-colors">Sign up</button>
           </SignUpButton>
-        </SignedOut>
-        <SignedIn>
+        </Show>
+        <Show when="signed-in">
           <UserButton afterSignOutUrl="/" />
-        </SignedIn>
+        </Show>
       </div>
 
       <div className="z-10 flex flex-col items-center max-w-3xl text-center space-y-8 p-10 bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 shadow-2xl">
