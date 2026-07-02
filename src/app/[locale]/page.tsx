@@ -1,13 +1,29 @@
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
+import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 export default function HomePage() {
   const t = useTranslations('Index');
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white p-6">
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white p-6 relative">
       <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 mix-blend-overlay"></div>
       
+      {/* Auth Controls */}
+      <div className="absolute top-6 right-6 z-20 flex space-x-4 items-center">
+        <SignedOut>
+          <SignInButton mode="modal">
+            <button className="text-sm font-semibold hover:text-gray-300 transition-colors">Log in</button>
+          </SignInButton>
+          <SignUpButton mode="modal">
+            <button className="text-sm font-bold bg-white text-indigo-900 px-4 py-2 rounded-full hover:bg-gray-100 transition-colors">Sign up</button>
+          </SignUpButton>
+        </SignedOut>
+        <SignedIn>
+          <UserButton afterSignOutUrl="/" />
+        </SignedIn>
+      </div>
+
       <div className="z-10 flex flex-col items-center max-w-3xl text-center space-y-8 p-10 bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 shadow-2xl">
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400 drop-shadow-sm">
           {t('title')}

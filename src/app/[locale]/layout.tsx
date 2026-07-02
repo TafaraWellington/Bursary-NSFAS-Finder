@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   description: "Find the best bursaries and funding options for South African students.",
 };
 
+import { shadcn } from '@clerk/ui/themes';
+
 export default async function RootLayout({
   children,
   params
@@ -32,17 +34,17 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <ClerkProvider>
-      <html
-        lang={locale}
-        className={`${outfit.variable} h-full antialiased`}
-      >
-        <body className="min-h-full flex flex-col">
+    <html
+      lang={locale}
+      className={`${outfit.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col">
+        <ClerkProvider appearance={{ theme: shadcn }}>
           <NextIntlClientProvider messages={messages}>
             {children}
           </NextIntlClientProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }
