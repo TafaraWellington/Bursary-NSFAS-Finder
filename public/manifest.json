@@ -1,0 +1,21 @@
+{
+  "name": "Bursary & NSFAS Finder",
+  "short_name": "BursaryFinder",
+  "description": "Find the best bursaries and funding options for South African students.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1e1b4b",
+  "theme_color": "#10b981",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
