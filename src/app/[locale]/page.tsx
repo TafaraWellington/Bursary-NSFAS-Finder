@@ -20,7 +20,7 @@ export default function HomePage() {
           </SignUpButton>
         </Show>
         <Show when="signed-in">
-          <UserButton afterSignOutUrl="/" />
+          <UserButton />
         </Show>
       </div>
 
